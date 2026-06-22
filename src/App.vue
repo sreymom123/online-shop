@@ -1,47 +1,77 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <div>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="nav-brand">🛒 Online Shop</div>
+      <div class="nav-links">
+        <router-link to="/">Home</router-link>
+        <router-link to="/products">Products</router-link>
+        <router-link to="/cart">Cart</router-link>
+        <router-link to="/wishlist">Wishlist</router-link>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+        <template v-if="isLoggedIn">
+          <router-link to="/orders">Orders</router-link>
+          <router-link to="/profile">Profile</router-link>
+          <button @click="logout">Logout</button>
+        </template>
+
+        <template v-else>
+          <router-link to="/login">Login</router-link>
+          <router-link to="/register">Register</router-link>
+        </template>
+      </div>
+    </nav>
+
+    <!-- Pages -->
+    <div class="container">
+      <router-view />
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<script>
+import api from './services/api'
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+export default {
+  data() {
+    return {
+      isLoggedIn: !!localStorage.getItem('token')
+    }
+  },
+  methods: {
+    async logout() {
+      await api.post('/logout')
+      localStorage.removeItem('token')
+      localStorage.removeItem('user')
+      this.isLoggedIn = false
+      this.$router.push('/login')
+    }
   }
 }
+</script>
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; background: #f5f5f5; }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #2c3e50;
+  color: white;
+}
+.nav-brand { font-size: 1.5rem; font-weight: bold; }
+.nav-links a, .nav-links button {
+  color: white;
+  text-decoration: none;
+  margin-left: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.nav-links a:hover { text-decoration: underline; }
+.container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
 </style>
