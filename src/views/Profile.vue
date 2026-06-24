@@ -73,7 +73,7 @@ export default {
         await api.put('/profile', this.form)
         this.message = 'Profile updated!'
       } catch {
-        this.error = 'មានបញ្ហា!'
+        this.error = 'have problem!'
       } finally {
         this.loading = false
       }
@@ -85,7 +85,7 @@ export default {
         this.message = 'Password changed!'
         this.passwordForm = { current_password: '', password: '', password_confirmation: '' }
       } catch {
-        this.error = 'Password មិនត្រឹមត្រូវ!'
+        this.error = 'Password not correct!'
       } finally {
         this.loading = false
       }

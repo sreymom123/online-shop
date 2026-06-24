@@ -3,7 +3,7 @@
     <h2>📦 My Orders</h2>
 
     <div v-if="orders.length === 0" class="empty">
-      មិនទាន់មាន Order នៅឡើយ!
+      don't have Order!
     </div>
 
     <div v-for="order in orders" :key="order.id" class="order-card">

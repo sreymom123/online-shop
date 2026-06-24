@@ -29,7 +29,7 @@
       {{ loading ? 'Loading...' : 'Register' }}
     </button>
 
-    <p>មានគណនីហើយ? <router-link to="/login">Login</router-link></p>
+    <p>have account? <router-link to="/login">Login</router-link></p>
   </div>
 </template>
 
@@ -60,7 +60,7 @@ export default {
         this.$router.push('/')
         window.location.reload()
       } catch (err) {
-        this.error = 'មានបញ្ហា សូមពិនិត្យទិន្នន័យម្តងទៀត!'
+        this.error = 'have problem, please check the data again.!'
       } finally {
         this.loading = false
       }

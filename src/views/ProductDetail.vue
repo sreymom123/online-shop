@@ -68,27 +68,27 @@ export default {
     async addToCart() {
       try {
         await api.post('/cart', { product_id: this.product.id, quantity: 1 })
-        this.message = 'បានបន្ថែមទៅ Cart!'
+        this.message = 'Add to Cart!'
       } catch {
-        this.message = 'សូម Login មុន!'
+        this.message = 'Please Login first!'
       }
     },
     async addToWishlist() {
       try {
         await api.post('/wishlist', { product_id: this.product.id })
-        this.message = 'បានបន្ថែមទៅ Wishlist!'
+        this.message = 'Add to Wishlist!'
       } catch {
-        this.message = 'សូម Login មុន!'
+        this.message = 'Please Login first!'
       }
     },
     async submitReview() {
       try {
         await api.post(`/products/${this.product.id}/reviews`, this.reviewForm)
-        this.message = 'Review បានដាក់ជោគជ័យ!'
+        this.message = 'Review success!'
         const res = await api.get(`/products/${this.product.id}`)
         this.product = res.data
       } catch {
-        this.message = 'មានបញ្ហា!'
+        this.message = 'have problem!'
       }
     }
   }
