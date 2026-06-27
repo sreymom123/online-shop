@@ -10,15 +10,15 @@ class ProductController extends Controller
 {
     // ទទួលយក Products ទាំងអស់
     public function index(Request $request)
-    {
+{
         $products = Product::with('category')
             ->when($request->category_id, function ($query) use ($request) {
                 $query->where('category_id', $request->category_id);
             })
-            ->paginate(12);
+            ->get(); // ← shows all products
 
-        return response()->json($products);
-    }
+            return response()->json($products);
+        }
 
     // ទទួលយក Product តែមួយ
     public function show($id)

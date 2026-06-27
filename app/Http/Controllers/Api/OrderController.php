@@ -66,7 +66,7 @@ class OrderController extends Controller
         Cart::where('user_id', $request->user()->id)->delete();
 
         return response()->json([
-            'message' => 'Order បានដាក់ជោគជ័យ!',
+            'message' => 'Order Success!',
             'order'   => $order->load('orderItems.product'),
         ], 201);
     }

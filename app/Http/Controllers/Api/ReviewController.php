@@ -29,7 +29,7 @@ class ReviewController extends Controller
             ->first();
 
         if ($exists) {
-            return response()->json(['message' => 'អ្នកបាន Review រួចហើយ!'], 409);
+            return response()->json(['message' => 'you review already!'], 409);
         }
 
         $review = Review::create([

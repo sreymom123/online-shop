@@ -26,7 +26,7 @@ class ProfileController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'Profile បានកែប្រែជោគជ័យ!',
+            'message' => 'Profile update success!',
             'user'    => $request->user(),
         ]);
     }
@@ -39,7 +39,7 @@ class ProfileController extends Controller
         ]);
 
         if (!Hash::check($request->current_password, $request->user()->password)) {
-            return response()->json(['message' => 'Password បច្ចុប្បន្នមិនត្រឹមត្រូវ!'], 400);
+            return response()->json(['message' => 'Password not correct!'], 400);
         }
 
         $request->user()->update([

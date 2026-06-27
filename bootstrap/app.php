@@ -17,6 +17,11 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // CORS សម្រាប់ Vue.js
         $middleware->append(HandleCors::class);
+
+        // Admin middleware alias
+        $middleware->alias([
+            'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

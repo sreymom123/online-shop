@@ -36,7 +36,7 @@ class CategoryController extends Controller
         ]);
 
         return redirect()->route('admin.categories.index')
-            ->with('success', 'Category បានបង្កើតជោគជ័យ!');
+            ->with('success', 'Category create success!');
     }
 
     // មើល Category តែមួយ
@@ -65,7 +65,7 @@ class CategoryController extends Controller
         ]);
 
         return redirect()->route('admin.categories.index')
-            ->with('success', 'Category បានកែប្រែជោគជ័យ!');
+            ->with('success', 'Category update successfuly!');
     }
 
     // លប់ Category
@@ -74,6 +74,6 @@ class CategoryController extends Controller
         $category->delete();
 
         return redirect()->route('admin.categories.index')
-            ->with('success', 'Category បានលប់ជោគជ័យ!');
+            ->with('success', 'Category delete successful!');
     }
 }

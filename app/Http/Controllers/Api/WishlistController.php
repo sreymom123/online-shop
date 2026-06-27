@@ -27,7 +27,7 @@ class WishlistController extends Controller
             ->first();
 
         if ($exists) {
-            return response()->json(['message' => 'មានក្នុង Wishlist រួចហើយ!'], 409);
+            return response()->json(['message' => 'have in Wishlist already!'], 409);
         }
 
         $wishlist = Wishlist::create([
@@ -46,6 +46,6 @@ class WishlistController extends Controller
 
         $wishlist->delete();
 
-        return response()->json(['message' => 'លប់ចេញពី Wishlist ជោគជ័យ!']);
+        return response()->json(['message' => 'delete from Wishlist success!']);
     }
 }

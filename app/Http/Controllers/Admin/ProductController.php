@@ -49,7 +49,7 @@ class ProductController extends Controller
         ]);
 
         return redirect()->route('admin.products.index')
-            ->with('success', 'Product បានបង្កើតជោគជ័យ!');
+            ->with('success', 'Product create successfuly!');
     }
 
     public function edit(Product $product)
@@ -87,7 +87,7 @@ class ProductController extends Controller
         ]);
 
         return redirect()->route('admin.products.index')
-            ->with('success', 'Product បានកែប្រែជោគជ័យ!');
+            ->with('success', 'Product update successfuly!');
     }
 
     public function destroy(Product $product)
@@ -98,7 +98,7 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('admin.products.index')
-            ->with('success', 'Product បានលប់ជោគជ័យ!');
+            ->with('success', 'Product delete successfuly!');
     }
 
     public function show(Product $product)
