@@ -67,8 +67,34 @@
             @endforeach
         </tbody>
     </table>
+
+    {{-- Pagination Footer --}}
     <div class="oh-table-footer">
-        Showing {{ $products->count() }} products
+        <span>Showing {{ $products->firstItem() }}–{{ $products->lastItem() }} of {{ $products->total() }} products</span>
+
+        @if($products->lastPage() > 1)
+        <div class="oh-pagination">
+            {{-- Prev --}}
+            <a href="{{ $products->previousPageUrl() ?? '#' }}"
+               class="oh-page-btn oh-page-arrow {{ $products->onFirstPage() ? 'disabled' : '' }}">
+                ‹
+            </a>
+
+            {{-- Page numbers --}}
+            @for($i = 1; $i <= $products->lastPage(); $i++)
+                <a href="{{ $products->url($i) }}"
+                   class="oh-page-btn {{ $products->currentPage() === $i ? 'active' : '' }}">
+                    {{ $i }}
+                </a>
+            @endfor
+
+            {{-- Next --}}
+            <a href="{{ $products->nextPageUrl() ?? '#' }}"
+               class="oh-page-btn oh-page-arrow {{ !$products->hasMorePages() ? 'disabled' : '' }}">
+                ›
+            </a>
+        </div>
+        @endif
     </div>
 </div>
 
@@ -146,10 +172,64 @@
 }
 .oh-btn-delete:hover { background: #fadadd; color: #6a1010; }
 
+/* ── FOOTER + PAGINATION ── */
 .oh-table-footer {
     padding: 10px 16px;
     font-size: 11.5px; color: #7a8c80;
     border-top: 1px solid #f0f2ee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.oh-pagination {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.oh-page-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 30px;
+    padding: 0 8px;
+    border-radius: 7px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #4a5e4f;
+    background: transparent;
+    border: 1px solid transparent;
+    text-decoration: none;
+    transition: background .12s, border-color .12s, color .12s;
+    cursor: pointer;
+}
+
+.oh-page-btn:hover:not(.disabled):not(.active) {
+    background: #f0f2ee;
+    border-color: #d8ddd5;
+    color: #1a2e1f;
+}
+
+.oh-page-btn.active {
+    background: #1e3a2b;
+    color: #fff;
+    border-color: #1e3a2b;
+    cursor: default;
+}
+
+.oh-page-btn.disabled {
+    color: #c0ccc4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.oh-page-arrow {
+    font-size: 16px;
+    color: #7a8c80;
 }
 </style>
 @endsection

@@ -41,21 +41,6 @@
             color: var(--text-main); text-decoration: none;
         }
         .topbar-right { display: flex; align-items: center; gap: 8px; }
-        .tb-icon {
-            width: 30px; height: 30px; border-radius: 7px;
-            border: 1px solid var(--border);
-            display: flex; align-items: center; justify-content: center;
-            color: var(--text-muted); font-size: 13px; cursor: pointer;
-            background: transparent; transition: background .15s;
-        }
-        .tb-icon:hover { background: var(--bg-body); }
-        .tb-avatar {
-            width: 30px; height: 30px; border-radius: 50%;
-            background: var(--green-dark); color: #fff;
-            font-size: 11px; font-weight: 600;
-            display: flex; align-items: center; justify-content: center;
-        }
-
         /* ── Sidebar ── */
         .sidebar {
             position: fixed; top: 52px; left: 0; bottom: 0;
@@ -135,9 +120,6 @@
 <nav class="topbar">
     <a class="topbar-brand" href="#">🌿 Admin Panel</a>
     <div class="topbar-right">
-        <div class="tb-icon"><i class="bi bi-bell"></i></div>
-        <div class="tb-icon"><i class="bi bi-gear"></i></div>
-        <div class="tb-avatar">JD</div>
     </div>
 </nav>
 
